@@ -1,8 +1,11 @@
-[build]
-installCommand = "composer install --optimize-autoloader --no-scripts --no-interaction"
+[variables]
+    NIXPACKS_PHP_VERSION = "8.4"
 
 [phases.setup]
-nixPkgs = ["php84", "php84Packages.composer", "php84Packages.fileinfo", "php84Packages.gd", "php84Packages.sqlite"]
+    nixPkgs = ["php84", "php84Packages.composer", "pkg-config", "libxml2", "gd", "sqlite"]
+
+[build]
+    installCommand = "composer install --optimize-autoloader --no-scripts --no-interaction"
 
 [start]
-cmd = "php artisan serve --host=0.0.0.0 --port=$PORT"
+    cmd = "php artisan serve --host=0.0.0.0 --port=$PORT"
